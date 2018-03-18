@@ -1,4 +1,4 @@
-package rest.todo.entities;
+package rest.todo.models;
 
 import java.io.Serializable;
 
