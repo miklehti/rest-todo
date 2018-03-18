@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import rest.todo.entities.Todo;
 import rest.todo.managers.TodoManager;
-import rest.todo.models.Todo;
 import rest.todo.models.TodoRequest;
 
 @RequestMapping("v1/")

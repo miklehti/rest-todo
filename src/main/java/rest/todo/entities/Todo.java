@@ -1,6 +1,13 @@
-package rest.todo.models;
+package rest.todo.entities;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,14 +16,20 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;;
 
+@Entity
+@Table(name="todos")
 public class Todo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	private static final Logger loki = LogManager.getLogger();
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private Long id;
 	
+	@Column(name="todo")
 	private String todo;
 
 	public String getTodo() {

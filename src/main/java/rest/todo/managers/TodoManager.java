@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import rest.todo.models.Todo;
+import rest.todo.entities.Todo;
 import rest.todo.models.TodoRequest;
 
 @Component
