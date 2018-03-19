@@ -42,16 +42,16 @@ public class TodoController {
 	 
 	 @ApiOperation(value = "Tallenna todo")
 	 @RequestMapping(value = "/tallenna", method = RequestMethod.POST)
-	    public ResponseEntity<Todo> saveTodo(@RequestBody TodoRequest todo) {
-		    Todo tallennettu = todoManager.saveTodo(todo);
-	        return new ResponseEntity<>(tallennettu, HttpStatus.OK);
+	    public void saveTodo(@RequestBody TodoRequest todo) {
+		    todoManager.saveTodo(todo);
+
 	    }
 	 
 	 @ApiOperation(value = "Päivitä todo")
 	 @RequestMapping(value = "/paivita", method = RequestMethod.PUT)
-	    public ResponseEntity<Todo> updateTodo(@RequestBody Todo todo) {
-		    Todo paivitetty = todoManager.updateTodo(todo);
-	        return new ResponseEntity<>(paivitetty, HttpStatus.OK);
+	    public void updateTodo(@RequestBody Todo todo) {
+		    todoManager.updateTodo(todo);
+
 	    }
 	 
 	 @ApiOperation(value = "Poista todo")
