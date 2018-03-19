@@ -3,6 +3,7 @@ package rest.todo.services;
 import java.util.List;
 
 import rest.todo.entities.TodoEntity;
+import rest.todo.models.Todo;
 
 public interface ITodoService {
 
@@ -12,7 +13,7 @@ public interface ITodoService {
  	
  	void addTodoEntity(TodoEntity todoEntity);
     
- 	void updateTodoEntity(TodoEntity todoEntity);
+ 	TodoEntity updateTodoEntity(TodoEntity todoEntity);
     
     void deleteTodoEntity(Long todoId);
 }

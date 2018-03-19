@@ -21,13 +21,12 @@ public class TodoRepository implements ITodoRepository{
 	@Override
 	public List<TodoEntity> getAllTodos() {
     
-		String hql = "FROM TodoEntity as tde ORDER BY tde.getId";
+		String hql = "FROM TodoEntity";
 		return (List<TodoEntity>) entityManager.createQuery(hql).getResultList();
 	}
 
 	@Override
-	public TodoEntity getTodoById(Long todoId) {
-		
+	public TodoEntity getTodoById(Long todoId) {	
 		return entityManager.find(TodoEntity.class, todoId);
 	}
 
@@ -37,10 +36,11 @@ public class TodoRepository implements ITodoRepository{
 	}
 
 	@Override
-	public void updateTodoEntity(TodoEntity todoEntity) {
+	public TodoEntity updateTodoEntity(TodoEntity todoEntity) {
 		TodoEntity tde = getTodoById(todoEntity.getId());
 		tde.setTodo(todoEntity.getTodo());
-		entityManager.flush();
+		 entityManager.flush();
+		 return tde;
 	}
 
 	@Override

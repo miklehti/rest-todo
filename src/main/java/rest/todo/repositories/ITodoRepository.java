@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import rest.todo.entities.TodoEntity;;
+import rest.todo.entities.TodoEntity;
+import rest.todo.models.Todo;;
 
 public interface ITodoRepository {
 	
@@ -14,7 +15,7 @@ public interface ITodoRepository {
 	 	
 	    void addTodoEntity(TodoEntity todoEntity);
 	    
-	    void updateTodoEntity(TodoEntity todoEntity);
+	    TodoEntity updateTodoEntity(TodoEntity todoEntity);
 	    
 	    void deleteTodoEntity(Long todoId);
 

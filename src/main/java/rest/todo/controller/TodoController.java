@@ -49,15 +49,16 @@ public class TodoController {
 	 
 	 @ApiOperation(value = "Päivitä todo")
 	 @RequestMapping(value = "/paivita", method = RequestMethod.PUT)
-	    public void updateTodo(@RequestBody Todo todo) {
-		    todoManager.updateTodo(todo);
+	    public Todo updateTodo(@RequestBody Todo todo) {
+		    Todo todoUpdated = todoManager.updateTodo(todo);
+			return todoUpdated;
 
 	    }
 	 
 	 @ApiOperation(value = "Poista todo")
 	 @RequestMapping(value = "/poista", method = RequestMethod.POST)
-	    public String deleteTodo(@RequestBody Todo todo) {
-	        return  todoManager.deleteTodo(todo);
+	    public String deleteTodo(@PathVariable("id") long id) {
+	        return  todoManager.deleteTodo(id);
 	    }
 	 
 	 

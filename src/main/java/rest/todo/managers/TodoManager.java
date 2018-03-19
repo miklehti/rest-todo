@@ -32,13 +32,13 @@ public class TodoManager {
 		todoService.addTodoEntity(TodoMapper.mapRequest(todoRequest));
 	}
 
-	public void updateTodo(Todo todo) {
-		todoService.updateTodoEntity(TodoMapper.mapToEntity(todo));
+	public Todo updateTodo(Todo todo) {
+		return TodoMapper.map(todoService.updateTodoEntity(TodoMapper.mapToEntity(todo)));
 	}
 
-	public String deleteTodo(Todo todo) {
-		todoService.deleteTodoEntity(todo.getId());
-		return "poistettu id " + todo.getId().toString();
+	public String deleteTodo(Long id) {
+		todoService.deleteTodoEntity(id);
+		return "poistettu id " + id.toString();
 	}
 
 }

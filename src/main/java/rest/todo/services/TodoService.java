@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import rest.todo.entities.TodoEntity;
+import rest.todo.models.Todo;
 import rest.todo.repositories.ITodoRepository;
 
 @Service
@@ -15,8 +16,7 @@ public class TodoService implements ITodoService{
 	private ITodoRepository todoRepository;
 	@Override
 	public List<TodoEntity> getAllTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return  todoRepository.getAllTodos();
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class TodoService implements ITodoService{
 	}
 
 	@Override
-	public void updateTodoEntity(TodoEntity todoEntity) {
-		todoRepository.updateTodoEntity(todoEntity);
+	public TodoEntity updateTodoEntity(TodoEntity todoEntity) {
+		return todoRepository.updateTodoEntity(todoEntity);
 		
 	}
 
