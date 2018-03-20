@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import rest.todo.models.Todo;
+import rest.todo.exceptions.NoContentException;
 import rest.todo.managers.TodoManager;
 import rest.todo.models.TodoRequest;
 
@@ -31,7 +32,12 @@ public class TodoController {
 	 @ApiOperation(value = "Haetaan todo id:llä", response = Todo.class)
 	 @RequestMapping(value = "/todo/{id}", method = RequestMethod.GET)
 	    public ResponseEntity<Todo> getTodo(@PathVariable("id") long id) {
-	        return new ResponseEntity<>(todoManager.getTodo(id), HttpStatus.OK);
+	        try {
+				return new ResponseEntity<>(todoManager.getTodo(id), HttpStatus.OK);
+			} catch (NoContentException e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, e.getHttpStatus());
+			}
 	    }
 	 
 	 @ApiOperation(value = "Haetaan kaikki todot")
@@ -49,16 +55,26 @@ public class TodoController {
 	 
 	 @ApiOperation(value = "Päivitä todo")
 	 @RequestMapping(value = "/paivita", method = RequestMethod.PUT)
-	    public Todo updateTodo(@RequestBody Todo todo) {
-		    Todo todoUpdated = todoManager.updateTodo(todo);
-			return todoUpdated;
-
+	    public ResponseEntity<Todo> updateTodo(@RequestBody Todo todo) {
+		    Todo todoUpdated;
+			try {
+				todoUpdated = todoManager.updateTodo(todo);
+				return  new ResponseEntity<>(todoUpdated, HttpStatus.OK);
+			} catch (NoContentException e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, e.getHttpStatus());
+			}
 	    }
 	 
 	 @ApiOperation(value = "Poista todo")
-	 @RequestMapping(value = "/poista", method = RequestMethod.POST)
-	    public String deleteTodo(@PathVariable("id") long id) {
-	        return  todoManager.deleteTodo(id);
+	 @RequestMapping(value = "/poista/{id}", method = RequestMethod.POST)
+	    public ResponseEntity<String> deleteTodo(@PathVariable("id") long id) {
+	        try {
+				return new ResponseEntity<>( todoManager.deleteTodo(id), HttpStatus.OK);
+			} catch (NoContentException e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, e.getHttpStatus());
+			}
 	    }
 	 
 	 

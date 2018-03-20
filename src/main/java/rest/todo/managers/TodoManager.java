@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import rest.todo.entities.TodoEntity;
+import rest.todo.exceptions.NoContentException;
 import rest.todo.mappers.TodoMapper;
 import rest.todo.models.Todo;
 import rest.todo.models.TodoRequest;
@@ -20,8 +21,12 @@ public class TodoManager {
 	@Autowired
 	ITodoService todoService;
 	
-    public Todo getTodo(Long id) {
-    	return TodoMapper.map(todoService.getTodoById(id));
+    public Todo getTodo(Long id) throws NoContentException {
+    	Todo palautettava = TodoMapper.map(todoService.getTodoById(id));
+    	if(palautettava==null) {
+    		throw new NoContentException("Haku tuotti tyhjän todon");
+    	}
+    	return palautettava;
     }
 
 	public List<Todo> getAllTodos() {
@@ -32,11 +37,11 @@ public class TodoManager {
 		todoService.addTodoEntity(TodoMapper.mapRequest(todoRequest));
 	}
 
-	public Todo updateTodo(Todo todo) {
+	public Todo updateTodo(Todo todo) throws NoContentException {
 		return TodoMapper.map(todoService.updateTodoEntity(TodoMapper.mapToEntity(todo)));
 	}
 
-	public String deleteTodo(Long id) {
+	public String deleteTodo(Long id) throws NoContentException {
 		todoService.deleteTodoEntity(id);
 		return "poistettu id " + id.toString();
 	}

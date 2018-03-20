@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import rest.todo.entities.TodoEntity;
-import rest.todo.models.Todo;
+import rest.todo.exceptions.NoContentException;
 import rest.todo.repositories.ITodoRepository;
 
 @Service
@@ -30,13 +30,13 @@ public class TodoService implements ITodoService{
 	}
 
 	@Override
-	public TodoEntity updateTodoEntity(TodoEntity todoEntity) {
+	public TodoEntity updateTodoEntity(TodoEntity todoEntity) throws NoContentException {
 		return todoRepository.updateTodoEntity(todoEntity);
 		
 	}
 
 	@Override
-	public void deleteTodoEntity(Long todoId) {
+	public void deleteTodoEntity(Long todoId) throws NoContentException {
 		todoRepository.deleteTodoEntity(todoId);
 		
 	}
