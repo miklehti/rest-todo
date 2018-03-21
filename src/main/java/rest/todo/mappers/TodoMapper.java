@@ -1,6 +1,7 @@
 package rest.todo.mappers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import rest.todo.entities.TodoEntity;
@@ -16,6 +17,7 @@ public class TodoMapper {
 		Todo todo = new Todo();
 		todo.setId(todoEntity.getId());
 		todo.setTodo(todoEntity.getTodo());
+		todo.setAikaleima(todoEntity.getAikaleima());
 		return todo;
 	}
 
@@ -37,6 +39,7 @@ public class TodoMapper {
 		}
 		TodoEntity todo = new TodoEntity();
 		todo.setTodo(todoRequest.getTodo());
+		todo.setAikaleima(new Date());
 		return todo;
 	}
 
@@ -47,6 +50,7 @@ public class TodoMapper {
 		TodoEntity todoEntity = new TodoEntity();
 		todoEntity.setId(todo.getId());
 		todoEntity.setTodo(todo.getTodo());
+		todoEntity.setAikaleima(new Date());
 		return todoEntity;
 	}
 }

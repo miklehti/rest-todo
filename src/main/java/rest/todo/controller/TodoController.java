@@ -2,6 +2,8 @@ package rest.todo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,14 +50,14 @@ public class TodoController {
 	 
 	 @ApiOperation(value = "Tallenna todo")
 	 @RequestMapping(value = "/tallenna", method = RequestMethod.POST)
-	    public void saveTodo(@RequestBody TodoRequest todo) {
+	    public void saveTodo(@Valid @RequestBody TodoRequest todo) {
 		    todoManager.saveTodo(todo);
 
 	    }
 	 
 	 @ApiOperation(value = "Päivitä todo")
 	 @RequestMapping(value = "/paivita", method = RequestMethod.PUT)
-	    public ResponseEntity<Todo> updateTodo(@RequestBody Todo todo) {
+	    public ResponseEntity<Todo> updateTodo(@Valid @RequestBody Todo todo) {
 		    Todo todoUpdated;
 			try {
 				todoUpdated = todoManager.updateTodo(todo);

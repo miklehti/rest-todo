@@ -1,6 +1,7 @@
 package rest.todo.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +13,14 @@ import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+
 
 @Entity
 @Table(name="todos")
@@ -33,6 +37,17 @@ public class TodoEntity implements Serializable{
 	
 	@Column(name="todo")
 	private String todo;
+	
+	@Column(name="aikaleima")
+	private Date aikaleima;
+
+	public Date getAikaleima() {
+		return aikaleima;
+	}
+
+	public void setAikaleima(Date aikaleima) {
+		this.aikaleima = aikaleima;
+	}
 
 	public String getTodo() {
 		return todo;

@@ -1,6 +1,7 @@
 package rest.todo.models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,12 +31,16 @@ public class Todo implements Serializable{
 
 	private Long id;
 	
-
+	@NotNull
+	@Size(min=4, max=64)
 	private String todo;
+	
+	private Date aikaleima;
 
 	public String getTodo() {
 		return todo;
 	}
+	
 
 	public void setTodo(String todo) {
 		this.todo = todo;
@@ -54,5 +63,15 @@ public class Todo implements Serializable{
 			loki.debug("Jotain meni pieleen parsittaessa jsonia");
 			return null;
 		}
+	}
+
+
+	public Date getAikaleima() {
+		return aikaleima;
+	}
+
+
+	public void setAikaleima(Date aikaleima) {
+		this.aikaleima = aikaleima;
 	}
 }
