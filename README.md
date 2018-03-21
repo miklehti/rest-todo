@@ -6,5 +6,5 @@ Tietokannan sisältö: http://localhost:8080/h2
 
 Kesken:
 - Junit testit poikkeuksille ja ehkä mappereille
-- CrudRepositoryn käyttöönotto
+- CrudRepositoryn käyttöönotto, ehkä entitymanagerin tilalle?
 - Joku autentikointi
