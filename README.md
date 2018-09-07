@@ -8,3 +8,5 @@ Kesken:
 - Junit testit poikkeuksille ja ehkä mappereille
 - CrudRepositoryn käyttöönotto, ehkä entitymanagerin tilalle?
 - Joku autentikointi
+- flywheel tms. titokantaanb
+- suomi pois, tilalle yksi endpoint
